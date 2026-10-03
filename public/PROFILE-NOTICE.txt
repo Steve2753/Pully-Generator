@@ -1,0 +1,21 @@
+HTD groove profile attribution
+
+HTD 3M and 5M sampled tooth-groove coordinates are adapted from the
+Parametric Pulley with multiple belt profiles by droftarts (January 2012),
+as preserved in rbuckland's OpenSCAD parametric-pulley source:
+https://github.com/rbuckland/openscad.parametric-pulley
+https://www.thingiverse.com/thing:16627
+
+The original model is distributed under Creative Commons Attribution-
+ShareAlike. The adapted profile data and generated pulley designs are
+provided under CC BY-SA 3.0. Attribution must be retained when sharing.
+https://creativecommons.org/licenses/by-sa/3.0/
+
+Adaptations: circular-arc fitting (under 0.002 mm deviation from sampled
+coordinates), JavaScript profile extrusion, circular lands, hex shaft
+bores, adjustable flanges, tube inserts, and bearing cones.
+This is a sampled community profile, not a certified cutter profile.
+Verify belt fit and shaft clearance with a test part before use.
+
+Replicad and its OpenCascade.js wrapper: MIT license.
+Open CASCADE Technology: LGPL 2.1 with additional exception.
