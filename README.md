@@ -17,6 +17,24 @@ Open the local URL printed by Vite. Build with `npm.cmd run build`; serve `dist`
 with any static host supporting `.wasm` assets. Sites hosting identity is in
 `.openai/hosting.json`.
 
+## GitHub Pages
+
+This is a Vite/React app. The root `index.html` loads source JSX and cannot be
+published directly with GitHub's basic static HTML workflow. Publish the built
+`dist` folder instead.
+
+1. In the repository's **Settings > Pages**, set **Source** to **GitHub Actions**.
+2. Commit and push these files to `main`. The workflow in
+   `.github/workflows/static.yml` installs dependencies, runs the Vite build,
+   and deploys only `dist`. You can also run it manually from the **Actions** tab.
+3. Wait for **Build and deploy to GitHub Pages** to succeed, then open
+   <https://Steve2753.github.io/Pully-Generator/>.
+
+`vite.config.js` uses relative asset URLs so the JavaScript, CSS, favicon,
+CAD worker, and WebAssembly load under the repository path and on root-level
+static hosts. The home and profile-license links also use the configured base.
+Do not upload the source tree or `node_modules` as the Pages artifact.
+
 ## Features
 
 - HTD 5M and 3M, 12–100 teeth, dimensional validation.
