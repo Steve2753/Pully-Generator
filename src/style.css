@@ -41,7 +41,9 @@
 .lower-grid{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)}
 .diagram-panel,.export-panel{min-width:0}
 .feature-drawing{width:100%;padding:16px;position:relative}
-.drawing-views{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:center}
+.drawing-views{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
+.drawing-view{margin:0;min-width:0;display:flex;flex-direction:column;align-items:center}
+.drawing-view figcaption{font-size:12px;line-height:1.4;font-weight:600;letter-spacing:.5px;color:var(--secondary);text-align:center;margin-top:4px}
 .feature-svg,.drawing-mode .feature-svg{width:100%;max-width:480px;justify-self:center;padding:0!important}
 .diagram-svg .drawing-callout text,.diagram-svg .drawing-dimension text{font-size:14px;font-weight:500;paint-order:stroke;stroke:var(--surface);stroke-width:4px;stroke-linejoin:round}
 .diagram-svg .view-label{font-size:14px;letter-spacing:1px;fill:var(--secondary);font-weight:600}
@@ -50,18 +52,13 @@
 .drawing-dimension .dimension-extension{opacity:.5;stroke-width:.8}
 :root[data-theme="dark"] .drawing-callout,:root[data-theme="dark"] .drawing-dimension{filter:none}
 .dimension-schedule{gap:0 20px;margin-top:12px}
-.dimension-schedule>div{min-width:0;padding:10px 2px;font-size:14px;line-height:1.5;gap:12px}
+.dimension-schedule>div{min-width:0;padding:6px 2px;font-size:13px;line-height:1.4;gap:12px}
 .dimension-schedule dt{color:var(--secondary);overflow-wrap:anywhere;flex:1}
 .dimension-schedule dt b{color:var(--drawing-active)}
 .dimension-schedule dd{min-width:0;max-width:48%;white-space:normal;overflow-wrap:anywhere;text-align:right}
 .drawing-note{font-size:13px;line-height:1.6;color:var(--secondary);margin:14px 2px 4px}
 @media(max-width:1150px){.lower-grid{grid-template-columns:minmax(0,1fr)}}
-@container(max-width:760px){
-  .drawing-views{grid-template-columns:minmax(0,1fr);gap:16px}
-  .feature-svg,.drawing-mode .feature-svg{max-width:440px}
+@container(max-width:600px){
   .dimension-schedule{grid-template-columns:minmax(0,1fr)}
-}
-@container(max-width:360px){
   .diagram-svg .drawing-callout text,.diagram-svg .drawing-dimension text{font-size:16px}
-  .diagram-svg .view-label{font-size:16px}
 }
