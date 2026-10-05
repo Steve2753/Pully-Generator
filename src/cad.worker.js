@@ -19,7 +19,9 @@ self.onmessage = async ({data}) => {
       const blob = exportPulley(shape,format,unit);
       self.postMessage({id,blob});
     } else {
-      self.postMessage({id, mesh: shape.mesh({tolerance:0.06,angularTolerance:0.15}), volume:measureVolume(shape)});
+      const mesh=shape.mesh({tolerance:0.06,angularTolerance:0.15});
+      mesh.edges=shape.meshEdges({tolerance:0.06,angularTolerance:0.15}).lines;
+      self.postMessage({id, mesh, volume:measureVolume(shape)});
     }
   } catch(error) { self.postMessage({id,error: error instanceof Error ? error.message : 'The CAD model could not be generated. Try a smaller tooth count or reset the parameters.'}); }
 };

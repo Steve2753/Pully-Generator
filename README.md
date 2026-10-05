@@ -46,7 +46,14 @@ Do not upload the source tree or `node_modules` as the Pages artifact.
 - Fine adjustment of groove width and depth, hex orientation, and which side
   carries a single flange.
 - Standard, tube-insert, and bearing-cone variants; zero, one, or two flanges.
-- Orbit, zoom, top/side/isometric views, wireframe, and a labeled schematic.
+- Screen-relative orbit with no pole flips; left drag rotates, Shift-left or
+  right/middle drag pans, and scroll zooms. A pan tool also supports left drag.
+- Isometric and six orthographic view buttons, plus a projection selector.
+- Shaded, shaded with CAD edges, and wireframe display modes.
+- Light/dark theme toggle with a remembered preference.
+- Front and side drawings at the same scale, using the solid's curved HTD
+  outline and actual flange, bore, insert, and cone dimensions. Flanges are
+  shown transparent in the front drawing to expose the tooth profile.
 - Solid STEP and binary STL exports, generated in a background browser worker.
   STEP declares the selected unit. STL coordinates use the selected unit;
   choose that unit when importing the unitless STL into a slicer.
