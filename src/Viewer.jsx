@@ -29,7 +29,7 @@ export default function Viewer({mesh,displayMode,view,viewKey,projection,fitKey,
     s.installControls=()=>{
       s.controls?.dispose();
       const controls=new TrackballControls(s.camera,renderer.domElement);
-      controls.staticMoving=true;controls.rotateSpeed=1.25;controls.zoomSpeed=1;
+      controls.staticMoving=true;controls.rotateSpeed=1.5;controls.zoomSpeed=1;
       controls.noPan=true;
       // Do not intercept typing in configuration fields.
       controls.keys=[];controls.minDistance=s.size*.15;controls.maxDistance=s.size*30;
