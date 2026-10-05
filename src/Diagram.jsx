@@ -40,10 +40,9 @@ export default function Diagram({params:p,active,unit='mm'}){
   const Callout=({ids,points,x,y,label})=><g style={{color:color(ids)}} className="drawing-callout"><polyline points={points}/><text x={x} y={y}>{ids} · {label}</text></g>;
   const Dim=({id,x1,x2,y,label})=><g style={{color:color(id)}} className="drawing-dimension"><path d={`M${x1} ${y}H${x2}`} markerStart={`url(#arrow-${uid})`} markerEnd={`url(#arrow-${uid})`}/><text x={(x1+x2)/2} y={y-8} textAnchor="middle">{id} · {label}</text></g>;
   return <div className="feature-drawing">
-    <div className="drawing-scroll" tabIndex="0" aria-label="Feature drawing; scroll horizontally on small screens">
-      <svg className="diagram-svg feature-svg" viewBox="0 0 730 350" role="img" aria-label={`Front and side pulley drawings. ${rows.map(row=>`${row.id}: ${row.label}, ${row.value}`).join('; ')}.`}>
-        <defs><marker id={`arrow-${uid}`} viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M10 1L0 5L10 9" fill="none" stroke="context-stroke"/></marker><pattern id={`hatch-${uid}`} width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><line x1="0" x2="0" y1="0" y2="7" stroke="#d9e2eb"/></pattern></defs>
-        <g fill="none" stroke="#93a4b8" strokeWidth="1.1">
+    <svg className="diagram-svg drawing-definitions" width="0" height="0" aria-hidden="true" focusable="false">
+        <defs><marker id={`arrow-${uid}`} viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M10 1L0 5L10 9" fill="none" stroke="context-stroke"/></marker><pattern id={`hatch-${uid}`} width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><line x1="0" x2="0" y1="0" y2="7" stroke="#d9e2eb"/></pattern><g id={`drawing-${uid}`}>
+        <g className="drawing-geometry" fill="none" stroke="#93a4b8" strokeWidth="1.1">
           {p.flanges>0&&<circle cx={cx} cy={cy} r={flange} fill={`url(#hatch-${uid})`}/>}
           <path className="tooth-outline" d={toothPath} fill="var(--drawing-fill)"/>
           <circle cx={cx} cy={cy} r={pitch} strokeDasharray="6 4"/>
@@ -71,7 +70,11 @@ export default function Diagram({params:p,active,unit='mm'}){
         {p.variant==='bearing'&&<Callout ids="R" points={`${sx+total},${sy-p.coneTip*scale/2} 626,139 714,139`} x="626" y="126" label="Bearing contact OD"/>}
         <text x={cx} y="342" textAnchor="middle" className="view-label">FRONT · {p.flanges} {p.flanges===1?'FLANGE':'FLANGES'}</text>
         <text x="480" y="342" textAnchor="middle" className="view-label">SIDE · {p.variant==='tube'?'TUBE INSERT':p.variant==='bearing'?'BEARING CONE':'STANDARD'}</text>
-      </svg>
+        </g></defs>
+    </svg>
+    <div className="drawing-views" role="group" aria-label={`Front and side pulley drawings. ${rows.map(row=>`${row.id}: ${row.label}, ${row.value}`).join('; ')}.`}>
+      <svg className="diagram-svg feature-svg drawing-front" viewBox="0 0 340 350" role="img" aria-label="Front pulley drawing"><use href={`#drawing-${uid}`}/></svg>
+      <svg className="diagram-svg feature-svg drawing-side" viewBox="340 0 410 350" role="img" aria-label="Side pulley drawing"><use href={`#drawing-${uid}`}/></svg>
     </div>
     <dl className="dimension-schedule" aria-label="Complete feature dimensions">{rows.map(row=><div key={row.id} className={row.fields.includes(active)?'highlighted':''}><dt><b>{row.id}</b>{row.label}</dt><dd>{row.value}</dd></div>)}</dl>
     <p className="drawing-note">Curved HTD profile matches the model. Front and side views use the same scale. Flanges shown transparent to reveal teeth. Tooth pitch stays in millimeters.</p>
